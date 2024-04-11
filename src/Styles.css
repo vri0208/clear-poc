@@ -1,0 +1,41 @@
+.header {
+    background-color: rgb(232, 32, 32);
+    color: rgb(202, 24, 24);
+    padding: 20px 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    background-color: rgb(232, 32, 32);
+    align-items: baseline;
+    padding: 20px ;
+
+  }
+
+  .appName {
+    color: white;
+    padding: 20px ;
+
+  }
+
+ 
+  .dropdown-item {
+  }
+
+  .dropdown {
+   
+  }
+
+  .dropdown-toggle
+  {
+    color: white;
+
+  }
+
+  .toggle{
+    color: black;
+    background-color:white;
+    padding: 20px ;
+
+  }
