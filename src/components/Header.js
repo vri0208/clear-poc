@@ -11,7 +11,7 @@ function Header() {
 
     <DropdownButton         variant="secondary"
   
-         title="Clear Poc">
+        data-bs-theme="light" title="Clear Poc">
       <Dropdown.Item  href="https://cprca.sharepoint.com/">Home</Dropdown.Item>
       <Dropdown.Item  href="https://cprca.sharepoint.com/">All my Apps</Dropdown.Item>
     </DropdownButton>
