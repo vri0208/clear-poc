@@ -23,7 +23,10 @@
   .dropdown-item {
   }
 
- 
+  label,
+  button {
+    margin: 2.5%;
+  }
 
   .dropdown
   {

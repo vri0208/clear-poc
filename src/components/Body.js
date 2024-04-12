@@ -1,26 +1,75 @@
-import React ,{ useState }  from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 import '../Styles.css';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 
+export default class Body extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        id : '',
+        firstName: '',
+        lastName: '',
+        message: '',
+      };
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+    }
 
-function Body() {
-    const [selectedVal, setSelectedVal] = useState('');
+    //const uniqueId = parseInt(Date.now() * Math.random()); 
+     uniqueId  =10;
 
-    const Values = [
-        { name: 'Vessel Arrival Date', code: 'NY' },
-        { name: 'test2', code: 'RM' },
-        { name: 'test3', code: 'LDN' },
-       
-    ];
-    
+  
+    handleChange(event) {
+      const inputValue = event.target.value;
+      const stateField = event.target.name;
+      this.setState({
+        [stateField]: inputValue,
+      });
+      console.log(this.state);
+    }
+    async handleSubmit(event) {
+      event.preventDefault();
+      //const uniqueId  =10;
+      const { id,firstName,lastName,message } = this.state;
+      await axios.post(
+        'https://i1xsjzkri4.execute-api.us-east-1.amazonaws.com/default/serverlessAppFunction',
+        { key1: `${id},${firstName},${lastName}, ${message}` }
+      );
+    }
+  
+    render() {
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+          <input  type="hidden" name="id" value={this.uniqueId}></input>
+            <label>First Name:</label>
+            <input
+              type="text"
+              name="firstName"
+              onChange={this.handleChange}
+              value={this.state.firstName}
+            />
 
-    return (
-        <div className="toggle">
-<Dropdown onChange={(e) => setSelectedVal(e.value)} value={selectedVal} placeholder="Sort by:" options={Values} className="dropdown"/>
-</div>
-   
-    );
+           <label>Last Name:</label>
+            <input
+              type="text"
+              name="lastName"
+              onChange={this.handleChange}
+              value={this.state.lastName}
+            />
+
+            <label>Message:</label>
+            <input
+              type="text"
+              name="message"
+              onChange={this.handleChange}
+              value={this.state.message}
+            />
+  
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      );
+    }
 }
-
-export default Body;
