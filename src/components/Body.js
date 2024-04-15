@@ -32,10 +32,20 @@ export default class Body extends Component {
       event.preventDefault();
       //const uniqueId  =10;
       const { id,firstName,lastName,message } = this.state;
+      let data = {
+        id:10,
+        firstName: {firstName},
+        lastName: {lastName},
+        message: {message}  
+      };
       await axios.put(
-        'https://0mzpd979fi.execute-api.us-west-2.amazonaws.com/items',
-        { key1: `${id},${firstName},${lastName}, ${message}` }
-      );
+        'https://0mzpd979fi.execute-api.us-west-2.amazonaws.com/items',data , {
+          headers: {
+           
+        }
+        }
+      );  
+      
     }
   
     render() {
