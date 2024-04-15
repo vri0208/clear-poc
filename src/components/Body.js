@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../Styles.css';
+import uuid from 'react-native-uuid';
+
 
 
 export default class Body extends Component {
@@ -28,23 +30,28 @@ export default class Body extends Component {
       });
       console.log(this.state);
     }
-    async handleSubmit(event) {
+     handleSubmit(event) {
       event.preventDefault();
       //const uniqueId  =10;
-      const { id,firstName,lastName,message } = this.state;
+      let uid = uuid.v1()
+
+      //const { id,firstName,lastName,message } = this.state;
       let data = {
-        id:10,
-        firstName: {firstName},
-        lastName: {lastName},
-        message: {message}  
+        id:uid.toString(),
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        message: this.state.message 
       };
-      await axios.put(
+      console.log(data);
+       axios.put(
         'https://0mzpd979fi.execute-api.us-west-2.amazonaws.com/items',data , {
-          headers: {
-           
+          headers: { 
+            
+             
         }
         }
-      );  
+      ).then(res => {console.log(res)}).catch((error) => {
+        console.log(error);    })
       
     }
   

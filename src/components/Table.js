@@ -44,10 +44,7 @@ export default class Table extends Component {
           })
       }
 
-       JsonDataDisplay(){
-        console.log(this.state.body);
-        
-      }
+       
   
     render() {
       return (
